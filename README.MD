@@ -2,6 +2,8 @@
 
 It uses Koa + Twitch-Bot
 
+Every file that you place in media folders becomes a !command without hussle and bussel.
+
 ## How to use
 
 1. Place mp3's in to /misc/sounds
