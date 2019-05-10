@@ -1,6 +1,6 @@
 # KoaTwitchBot
 
-It's uses Koa + Twitch-Bot
+It uses Koa + Twitch-Bot
 
 ## How to use
 
@@ -9,7 +9,9 @@ It's uses Koa + Twitch-Bot
 3. create .env file:
 
 USERNAME = 'AccountName'
+
 OAUTH = 'Token'
+
 TWITCH_CHANNEL = 'Yourchannel'
 
 4. Run: node app.js
@@ -26,8 +28,11 @@ It's just a fun project for learning, but if you interesting at supporting me yo
 I will try to add more features to this project ASAP.
 
 My other projects(russian lang):
+
 My twitch: https://www.twitch.tv/teoreez (livestreaming)
+
 Youtube: https://www.youtube.com/channel/UCdJjp2IZ7Qs6k_Z6pM95uGQ (videos about game mechanics, gametheory and gamedev)
+
 Instagram: https://www.instagram.com/teoreez/ (fun design stuff)
 
 Thanks @kritzware and @KoaTeam for creating great powerfull tools!
