@@ -16,7 +16,7 @@ OAUTH = 'Token'
 
 TWITCH_CHANNEL = 'Yourchannel'
 
-4. Run: node app.js
+4. npm update, Run: node app.js
 5. add to OBS Browser Source: http://localhost:3000/audio.html and http://localhost:3000/video.html
 6. !list PogChamp
 
