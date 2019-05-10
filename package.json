@@ -1,0 +1,19 @@
+{
+  "name": "koa-twitch-bot",
+  "version": "0.5.2",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js"
+  },
+  "author": "Ivan Teoreez B",
+  "license": "MIT",
+  "dependencies": {
+    "dotenv": "^8.0.0",
+    "koa": "^2.7.0",
+    "koa-route": "^3.2.0",
+    "koa-static": "^5.0.0",
+    "twitch-bot": "^1.2.5"
+  },
+  "keywords": [],
+  "description": ""
+}
