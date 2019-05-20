@@ -57,7 +57,7 @@ Bot.on('message', chatter => {
 
 Bot.on('message', chatter => {
     if(chatter.message === '!coins') {
-        Bot.say(chatter.display_name + ' ваш баланс составляет: ' + getCoins(chatter.display_name) + ' PogChamp')
+        Bot.say(chatter.display_name + ' ' + process.env.COINS_GREETINGS + ' ' + getCoins(chatter.display_name) + ' PogChamp')
     }
 })
 
