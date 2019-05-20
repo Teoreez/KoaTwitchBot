@@ -8,6 +8,7 @@ const koaapp = new Koa();
 const soundFolder = './misc/sounds';
 const videoFolder = './misc/videos';
 const fs = require('fs');
+const { getCoins, coinsOperator, userOperator} = require('./database');
 
 //reading files
 const listfiles = fs.readdirSync(soundFolder);
@@ -51,15 +52,31 @@ Bot.on('message', chatter => {
     if(chatter.message === '!list') {
       Bot.say('Sound: '+ listfiles.toString().replace(/.mp3/gi, "") + ' Video: ' + listvideos.toString().replace(/.mp4/gi, "") + ` PogChamp`)
     }
+    
 })
-  
+
+Bot.on('message', chatter => {
+    if(chatter.message === '!coins') {
+        Bot.say(chatter.display_name + ' ваш баланс составляет: ' + getCoins(chatter.display_name) + ' PogChamp')
+    }
+})
 
 //scanbot
 Bot.on('message', chatter => {
     if(command(chatter.message)){
-        sound = chatter.message.replace(/\W/, "");
+        if(coinsOperator(chatter.display_name)) {
+            sound = chatter.message.replace(/\W/, "");
+            //console.log("coins spend: " + chatter.display_name);
+        }
+        
     } else if (videocommand(chatter.message)) {
-        video = chatter.message.replace(/\W/, "");
+        if(coinsOperator(chatter.display_name)) {
+            video = chatter.message.replace(/\W/, "");
+            //console.log("coins spend: " + chatter.display_name);
+        }
+        
+    } else {
+        userOperator(chatter.display_name);
     };
 })
 

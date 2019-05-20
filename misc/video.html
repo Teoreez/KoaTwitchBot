@@ -28,6 +28,7 @@
                 $('video #source').attr('src', data);
                 $('video').get(0).load();
                 $('video').get(0).play();
+                tempdata = data;
             } else {
                 $.get(
                     "/refreshvideo",
