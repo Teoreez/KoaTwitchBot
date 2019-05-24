@@ -8,9 +8,9 @@ Every file that you place in media folders becomes a !command without hussle and
 !coins - for balance
 !%FileName% - to run a command
 
-##Download:
+## Download:
 
-[https://github.com/Teoreez/KoaTwitchBot/blob/master/release/KoaTwitchApp-alphav1.zip](alphav1)
+[alphav1](https://github.com/Teoreez/KoaTwitchBot/blob/master/release/KoaTwitchApp-alphav1.zip)
 
 1. Config in resources/app/config.js
 2. Botname - self
