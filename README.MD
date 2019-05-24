@@ -8,6 +8,17 @@ Every file that you place in media folders becomes a !command without hussle and
 !coins - for balance
 !%FileName% - to run a command
 
+##Download:
+
+[https://github.com/Teoreez/KoaTwitchBot/blob/master/release/KoaTwitchApp-alphav1.zip](alphav1)
+
+1. Config in resources/app/config.js
+2. Botname - self
+3. oauth - read:bellow Generate Twitch OAUTH
+4. channel - self
+5. ????
+6. save and start app
+
 ## Prerequisite
 
 1. You need to install Node.js (LTS)
@@ -15,7 +26,7 @@ Every file that you place in media folders becomes a !command without hussle and
 3. 'npm update' - for install all node_modules
 4. 'npm start' - for start
 
-## How to use
+## How to use (old fassion way)
 
 1. Place mp3's in to /misc/sounds
 2. Place mp4`s in to /misc/videos
