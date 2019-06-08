@@ -1,3 +1,7 @@
+# Master-v2
+
+[here](https://github.com/Teoreez/KoaTwitchBot/tree/master-v2)
+
 # KoaTwitchBot
 
 It uses Koa + Twitch-Bot
