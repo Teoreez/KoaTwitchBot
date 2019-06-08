@@ -1,14 +1,6 @@
-TODO:
+var videoElement = document.getElementById('id_of_the_video_element_here');
+videoElement.pause();
+videoElement.removeAttribute('src'); // empty source
+videoElement.load();
 
-## Added
-
-> Coins system
-
-
-## TODO
-
-> Better OOP
-> Youtube and Mixer integration
-> GUI
-> Output chat as BS item
-> Event log at GUI: Chat, Donation, Events
+https://stackoverflow.com/questions/3258587/how-to-properly-unload-destroy-a-video-element

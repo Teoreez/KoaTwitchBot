@@ -1,4 +1,4 @@
-# KoaTwitchBot
+# KoaTwitchBotv2
 
 It uses Koa + Twitch-Bot
 

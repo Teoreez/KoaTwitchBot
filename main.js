@@ -1,14 +1,28 @@
 require('dotenv').config();
 
+//wellcome to hell
 const serve = require('koa-static');
-const _ = require('koa-route');
 const Koa = require('koa');
 const TwitchBot = require('twitch-bot')
 const koaapp = new Koa();
-const soundFolder = './misc/sounds';
-const videoFolder = './misc/videos';
+const soundFolder = './www/sounds';
+const videoFolder = './www/videos';
 const fs = require('fs');
+const WebSocket = require('ws')
+const sockets = new Map();
+const mm = require('music-metadata');
 const { getCoins, coinsOperator, userOperator} = require('./database');
+const control = require('./ctrlconfig');
+
+//create ws
+const wss = new WebSocket.Server({ port: 3333 })
+wss.on('connection', ws => {
+    sockets.set('key', ws)
+    ws.on('message', message => {
+      console.log(`Received message => ${message}`)
+    })
+     
+})
 
 //reading files
 const listfiles = fs.readdirSync(soundFolder);
@@ -28,16 +42,57 @@ function videocommand (com) {
         return true;
     }
 }
-//empty vars
-var sound = "";
-var video = "";
 
-// bot data
+//ws API operator
+function callsend(data) {
+    const ws = sockets.get('key')
+    ws.send(data)
+}
+function wsoperator(message, type) {
+    let datatype = type;
+    let filepath = [];
+    let durationdata = [];
+    if (type === 'mp3') {
+        filepath = './www/sounds/' + message + '.mp3';
+    }
+    if (type === 'mp4') {
+        filepath = './www/videos/' + message + '.mp4';
+    }
+    mm.parseFile(filepath, {native: true})
+    .then( async metadata => {
+        durationdata = metadata.format.duration;
+        console.log(durationdata);
+        let dataobj = JSON.stringify({
+            "filename": message,
+            "duration": durationdata,
+            "type": datatype
+        })
+        callsend(dataobj);
+    })
+    .catch(
+        err => {
+            console.error(err.message);
+    })
+    
+    
+}
+
+// bot AUTHdata
 const Bot = new TwitchBot({
     username: process.env.USERNAME,
     oauth: process.env.OAUTH,
     channels: [process.env.TWITCH_CHANNEL]
   })
+
+//ctrl init
+const ctrl = (ctx) => {
+    if(control.state === "on") {
+        if(control.binds.includes(ctx)) {
+            process.stdout.write(binds + '\n');
+        }
+    }
+}  
+
 
 //bot things
 Bot.on('join', channel => {
@@ -65,46 +120,25 @@ Bot.on('message', chatter => {
 Bot.on('message', chatter => {
     if(command(chatter.message)){
         if(coinsOperator(chatter.display_name)) {
-            sound = chatter.message.replace(/\W/, "");
+            wsoperator(chatter.message.replace(/\W/, ""), 'mp3')
             //console.log("coins spend: " + chatter.display_name);
         }
         
     } else if (videocommand(chatter.message)) {
         if(coinsOperator(chatter.display_name)) {
-            video = chatter.message.replace(/\W/, "");
+            wsoperator(chatter.message.replace(/\W/, ""), 'mp4')
             //console.log("coins spend: " + chatter.display_name);
         }
         
     } else {
         userOperator(chatter.display_name);
+        //ctrl(chatter.message);
     };
 })
 
+//serve static files
+koaapp.use(serve('www'));
 
-
-const content = {
-    soundalert: (ctx) => {
-        ctx.body = "/sounds/" + sound + ".mp3";
-    },
-    videoalert: (ctx) => {
-        ctx.body = "/videos/" + video + ".mp4";
-    },
-    refreshaudio: (ctx) => {
-        ctx.body = "refresh",
-        sound = "";
-    },
-    refreshvideo: (ctx) => {
-      ctx.body = "refreshvideo"
-      video = "";
-    }
-};
-
-koaapp.use(serve('misc'));
-
-koaapp.use(_.get('/soundalert', content.soundalert));
-koaapp.use(_.get('/videoalert', content.videoalert));
-koaapp.use(_.get('/refreshaudio', content.refreshaudio));
-koaapp.use(_.get('/refreshvideo', content.refreshvideo));
 
 koaapp.listen(3000);
 

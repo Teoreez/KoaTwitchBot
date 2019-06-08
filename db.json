@@ -2,11 +2,27 @@
   "users": [
     {
       "username": "TeoReez",
-      "coins": 325
+      "coins": 5219
     },
     {
       "username": "autisticsadventure",
+      "coins": 37
+    },
+    {
+      "username": "jberries",
+      "coins": 34
+    },
+    {
+      "username": "mir_zam",
       "coins": 22
+    },
+    {
+      "username": "Dboy_03ua",
+      "coins": 34
+    },
+    {
+      "username": "KenderSPB",
+      "coins": 11
     }
   ]
 }
