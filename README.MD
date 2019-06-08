@@ -28,11 +28,11 @@ Every file that you place in media folders becomes a !command without hussle and
 
 ## How to use (old fassion way)
 
-1. Place mp3's in to /misc/sounds
-2. Place mp4`s in to /misc/videos
+1. Place mp3's in to /www/sounds
+2. Place mp4`s in to /www/videos
 3. create .env file: use example.env - then rename it to '.env', also you can tune coins there, viwers gets coins per post - chat message
 4. npm start
-5. add to OBS Browser Source: http://localhost:3000/audio.html and http://localhost:3000/video.html
+5. add to OBS Browser Source: http://localhost:3000/
 6. !list PogChamp
 
 ## Generate Twitch OAUTH
